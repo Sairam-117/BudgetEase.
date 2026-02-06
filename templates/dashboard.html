@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="stats-grid" id="budgetStats">
+    <!-- Stats will be populated by JS -->
+    <div class="stat-card">Loading budgets...</div>
+</div>
+
+<div id="alertPanel" style="margin-bottom: 2rem; display: none;">
+    <h2>Budget Alerts</h2>
+    <div id="alertsContainer" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <!-- Alerts will be populated by JS -->
+    </div>
+</div>
+
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h2>Reimbursement Claims</h2>
+        <button onclick="loadDashboardData()"
+            style="background: none; border: 1px solid var(--border-color); cursor: pointer; padding: 0.5rem; border-radius: 4px;">↻
+            Refresh</button>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Bill</th>
+                    <th>Amount (₹)</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="claimsTableBody">
+                <!-- Claims will be populated by JS -->
+            </tbody>
+        </table>
+    </div>
+    <p id="noClaimsMsg" style="text-align: center; color: var(--text-muted); padding: 2rem; display: none;">No claims
+        submitted yet.</p>
+</div>
+
+<div id="notification"></div>
+{% endblock %}

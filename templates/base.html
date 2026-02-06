@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetEase - Smart Expense System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <h1 class="logo">BudgetEase</h1>
+            <nav>
+                <a href="{{ url_for('member_portal') }}">Member Portal</a>
+                <a href="{{ url_for('admin_dashboard') }}" class="admin-link">Admin Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 BudgetEase System. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot UI -->
+    <div id="chatBtn" class="chat-btn">💬</div>
+
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <span>BudgetEase Assistant</span>
+            <span id="closeChat" style="cursor: pointer;">✖</span>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <div class="msg msg-bot">Hi! I'm your assistant. Ask me anything about your claims or budgets.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask a question..." autocomplete="off">
+            <button id="sendChat">➤</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

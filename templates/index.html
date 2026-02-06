@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    {% if alerts %}
+    <div class="alert-section"
+        style="margin-bottom: 2rem; padding: 1rem; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 8px;">
+        <h3 style="color: #be123c; margin-bottom: 1rem;">📢 Announcements / Alerts</h3>
+        <ul style="list-style: none; padding: 0;">
+            {% for alert in alerts %}
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid #ffe4e6; color: #881337;">
+                <small style="color: #9f1239;">{{ alert.timestamp }}</small><br>
+                {{ alert.message }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <h2>Submit Reimbursement Claim</h2>
+    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+        Upload your receipt and fill in the details below to claim expenses for your club activities.
+    </p>
+
+    <form id="claimForm">
+        <div class="form-group">
+            <label for="event">Event Budget</label>
+            <select id="event" name="event" required>
+                <option value="" disabled selected>Select an Event...</option>
+                {% for event in events %}
+                <option value="{{ event }}">{{ event }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Expense Category</label>
+            <select id="category" name="category" required>
+                <option value="Logistics">Logistics</option>
+                <option value="Refreshments">Refreshments</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Equipment">Equipment</option>
+                <option value="Prizes">Prizes</option>
+            </select>
+        </div>
+
+        <!-- Amount is now extracted automatically -->
+
+        <div class="form-group">
+            <label for="receipt">Upload Receipt / Bill</label>
+            <input type="file" id="receipt" name="receipt" accept="image/*,application/pdf" required>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">
+                Supported: JPG, PNG, PDF. (Demo: File details will be simulated)
+            </small>
+        </div>
+
+        <button type="submit" class="btn-primary">Submit Claim</button>
+    </form>
+</div>
+
+<div id="notification"></div>
+{% endblock %}
